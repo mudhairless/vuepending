@@ -43,6 +43,11 @@ module.exports = {
       const performValue = action[perform];
       const value = action.value;
       let func = null;
+      if ('$log' in this) {
+        this.$log(`Pending: (Peforming) ${perform}`);
+      } else {
+        window.console.log(`Pending: (Peforming) ${perform}`);
+      }
       switch (perform) {
         default:
           if ('$log' in this) {
