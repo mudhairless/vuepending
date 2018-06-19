@@ -1,0 +1,11 @@
+{
+  "name": "vuepending",
+  "version": "1.0.0",
+  "description": "Perform actions when events happen",
+  "main": "src/index.js",
+  "author": "Ebben Feagan <ebben@tpv.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^2.5.16"
+  }
+}
