@@ -1,6 +1,6 @@
 {
   "name": "vuepending",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Perform actions when events happen",
   "main": "dist/main.js",
   "author": "Ebben Feagan <ebben@tpv.com>",
