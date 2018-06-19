@@ -73,7 +73,11 @@ module.exports = {
       }
     };
     Vue.prototype.$pending = function(event, actions) {
-      this.$__pending_actions.push({event, actions});
+      if (actions instanceof Array) {
+        this.$__pending_actions.push({event, actions});
+      } else {
+        this.$__pending_actions.push({event, actions: [actions]});
+      }
     };
     Vue.prototype.$actions = {
       assign: function(variable, value) {
