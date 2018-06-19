@@ -1,8 +1,8 @@
 {
   "name": "vuepending",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Perform actions when events happen",
-  "main": "dist/main.js",
+  "main": "src/index.js",
   "author": "Ebben Feagan <ebben@tpv.com>",
   "license": "MIT",
   "scripts": {
