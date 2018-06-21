@@ -21,10 +21,15 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/* eslint-env browser */
+/* eslint no-param-reassign: "off" */
+/* eslint prefer-destructuring: "off" */
+/* eslint camelcase: "off" */
+
 module.exports = {
   install(Vue) {
     Vue.prototype.$__pending_actions = [];
-    Vue.prototype.$processPending = function (event_name) {
+    Vue.prototype.$processPending = function pp(event_name) {
       for (let i = 0, len = this.$__pending_actions.length; i < len; i += 1) {
         if (this.$__pending_actions[i].event === event_name) {
           for (let k = 0, klen = this.$__pending_actions[i].actions.length; k < klen; k += 1) {
@@ -32,8 +37,9 @@ module.exports = {
           }
         }
       }
+      this.$__pending_actions = this.$__pending_actions.filter(i => i !== event_name);
     };
-    Vue.prototype.$__process_action = function (action) {
+    Vue.prototype.$__process_action = function pa(action) {
       const keys = Object.keys(action);
       let perform = null;
       if (keys[0] !== 'value') {
@@ -42,7 +48,7 @@ module.exports = {
         perform = keys[1];
       }
       const performValue = action[perform];
-      const value = action.value;
+      const { value } = action.value;
       let func = null;
       if ('$log' in this) {
         this.$log(`Pending: (Peforming) ${perform}`);
@@ -59,13 +65,13 @@ module.exports = {
           break;
 
         case 'set':
-          func = function (n, v) {
+          func = function set(n, v) {
             this[n] = v;
           };
           break;
 
         case 'commit':
-          func = function (n, v) {
+          func = function commit(n, v) {
             this.$commit(n, v);
           };
           break;
@@ -78,7 +84,7 @@ module.exports = {
         func(performValue, value);
       }
     };
-    Vue.prototype.$pending = function (event, actions) {
+    Vue.prototype.$pending = function pnding(event, actions) {
       if (actions instanceof Array) {
         this.$__pending_actions.push({ event, actions });
       } else {
