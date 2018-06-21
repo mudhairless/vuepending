@@ -35,10 +35,11 @@ module.exports = {
     };
     Vue.prototype.$__process_action = function (action) {
       const keys = Object.keys(action);
+      let perform = null;
       if (keys[0] !== 'value') {
-        const perform = keys[0];
+        perform = keys[0];
       } else {
-        const perform = keys[1];
+        perform = keys[1];
       }
       const performValue = action[perform];
       const value = action.value;
@@ -74,7 +75,7 @@ module.exports = {
           break;
       }
       if (func !== null) {
-        func(performValue, value).bind(this);
+        func(performValue, value);
       }
     };
     Vue.prototype.$pending = function (event, actions) {
